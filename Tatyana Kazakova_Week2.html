@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Tatyana Kazakova: MADLIBS</title>
+<style type="text/css">
+<!--
+body {
+	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
+	background: #533F4D;
+	margin: 0;
+	padding: 0;
+	color: #000;
+}
+
+ul, ol, dl {
+	padding: 0;
+	margin: 0;
+}
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: 0;	
+	padding-right: 100px;
+	padding-left: 100px;
+	color: #9D525F;
+}
+
+img {
+
+}
+.container {
+	width: 960px;
+	padding-right: 100px;
+	padding-left: 100px;
+	margin: 0 auto;
+	background-color: #D7C6A3;
+}
+#input li {
+	padding: 0px;
+	display: block;
+	font-size: 0.9em;
+	line-height: 0.7em;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 10px;
+	margin-left: 100px;
+}
+
+#nounInput, #verbInput, #adjectiveInput {
+	font-family: verdana;
+	font-size: 1.2em;
+	border: 4px solid #ccc;
+	color: #666;
+	padding: 10px;
+	background-color: #E8E8E8;
+}
+
+.content {
+	padding: 30px 0;
+	background-color: #D7C6A3;
+}
+
+
+h3 span {
+	color: black;
+}
+-->
+</style></head>
+
+<body>
+
+<div class="container">
+  <div class="content">
+  <h3> <span>Tatyana Kazakova</span></h3>
+  <h1> MADLIBS | Homework Week 2</h1>
+
+<h3>Please Choose One:</h3>
+ <img name="rock" id="rock"src="rock.png">
+ <img name="paper" id="paper" src="paper.png">
+ <img name="scissors" id="scissors" src="scissors.png">
+ <br><br><br>
+<h3> COMPUTERS CHOICE: <span id="comChoiceText" value="">? ? ? ? ? ?</span></h3>
+ <br><br>
+<h3> Who won?<br>RESULT: 
+<span id="gameResult" value=""> WINNER </span>
+<br><br>
+
+<button id="resetButton" onClick=window.location.reload(); >Play Again</button></h3> 
+
+
+<script type="text/javascript" charset="utf-8">
+var rc = document.querySelector("#rock");
+ rc.addEventListener("click", rcClick, false);
+
+var sc = document.querySelector("#scissors");
+ sc.addEventListener("click", scClick, false);
+
+ var pa = document.querySelector("#paper");
+ pa.addEventListener("click", paClick, false);
+
+ var  rs = document.querySelector("#resetButton");
+ // rs.addEventListener("click", rsClick, false);
+
+var comChoiceText= document.querySelector("#comChoiceText");
+var gameResult= document.querySelector("#gameResult");
+
+ var myChoice = "";
+ var compChoice ="";
+
+
+function rcClick(){
+			console.log("rock");
+			document.querySelector("#paper").setAttribute("style", "display: none;");	
+			document.querySelector("#scissors").setAttribute("style", "display: none;");
+			myChoice = "rock";
+			window.setTimeout(randomComputer,1000);	
+		};
+function paClick(){
+			console.log("paper");	
+			document.querySelector("#rock").setAttribute("style", "display: none;");	
+			document.querySelector("#scissors").setAttribute("style", "display: none;");
+			myChoice = "paper";
+			window.setTimeout(randomComputer,1000);	
+		};
+function scClick(){
+			console.log("scissors");
+			document.querySelector("#paper").setAttribute("style", "display: none;");	
+			document.querySelector("#rock").setAttribute("style", "display: none;");
+			myChoice = "scissors";
+			window.setTimeout(randomComputer,1000);	
+		};
+
+function rsClick(){	window.location.reload();}	
+
+
+function randomComputer(){
+			
+			var random_number = randomRange(0,2);
+
+			if( random_number == 0){
+			comChoiceText.innerHTML = " PAPER ";
+			compChoice = "paper";	
+			 	
+			}else if(random_number == 1){
+			comChoiceText.innerHTML = " SCISSORS ";
+			compChoice = "scissors";			
+			}else{
+			comChoiceText.innerHTML = " ROCK ";
+			compChoice = "rock";	
+		}
+
+		result();
+	};
+function randomRange(min, max)
+		{
+			return Math.round(((Math.random()*(max-min)) + min)); 
+		};
+function result(){
+	if(compChoice == myChoice){
+			gameResult.innerHTML = " PLAY AGAIN ";
+	}else if(((compChoice == "rock") && (myChoice == "paper")) || ((compChoice == "scissors") && (myChoice == "rock")) || 
+		((compChoice == "paper") && (myChoice == "scissors"))){gameResult.innerHTML = " YOU WON ";
+	}else if(((compChoice == "paper") && (myChoice == "rock")) || ((compChoice == "rock") && (myChoice == "scissors")) || 
+		((compChoice == "scissors") && (myChoice == "paper"))){
+			gameResult.innerHTML = " COMPUTER WON  ";
+	}
+
+
+};
+
+</script>
+
+    <!-- end .content --></div>
+<!-- end .container --></div>
+</body>
+</html>
